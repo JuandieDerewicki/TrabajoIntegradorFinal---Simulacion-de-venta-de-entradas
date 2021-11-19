@@ -72,6 +72,72 @@ public class EntradaVisitante {
 
         return null;
     }
+ public void encontrarEntrada(int DNI, Empleado empleado) {
+        int cont=0;
+        int cont1=0;
+        boolean encontro = false;
+        for (HinchaVisitante c : PlateaVisitante) {
+            if (c.getDNI().equals(DNI)) {
+                cont++;
+                if (cont==1){
+
+                System.out.println("La entrada fue encontrada:" + c);
+                System.out.println("La entrada fue encontrada en la platea visitante");
+                }
+
+                encontro = true;
+                break;
+            }
+
+            for (HinchaVisitante x : PopularVisitante) {
+                if (x.getDNI().equals(DNI)) {
+                    cont1++;
+                    if (cont1==1){
+                    System.out.println("La entrada fue encontrada:" + x);
+                        System.out.println("La entrada fue encontrada en la popular visitante" );}
+                    encontro = true;
+                    break;
+                }
+            }
+        }
+
+    }
+
+
+
+
+    public void Abrir(String NombredeprimerARCHIVO,String NombredeSegundoArchivo){
+        try {
+
+            ObjectInputStream flujodeentrada=new ObjectInputStream(new FileInputStream(NombredeprimerARCHIVO));
+            LinkedList<HinchaVisitante> Platearecuperada=(LinkedList<HinchaVisitante>) flujodeentrada.readObject();
+            ObjectInputStream flujodeentrada2=new ObjectInputStream(new FileInputStream(NombredeSegundoArchivo));
+            LinkedList<HinchaVisitante> Popularrecuperada=(LinkedList<HinchaVisitante>) flujodeentrada2.readObject();
+            flujodeentrada.close();
+            flujodeentrada2.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void verEntradasRestantesVisitantes() {
+        int num=capacidadDPlateaVisitante-PlateaVisitante.size();
+        int num2=capacidadDPOPULARVisitante-PopularVisitante.size();
+        System.out.println("EL TOTAL DE ENTRADAS RESTANTE ES DE:"+(num+num2));
+        System.out.println(" ENTRADAS RESTANTE DE POPULAR VISITANTE:"+num2);
+        System.out.println(" ENTRADAS RESTANTE DE PLATEA VISITANTE:"+num);
+
+    }
+    public void VerlistadePRECIOS(){
+        System.out.println("LISTA DE PRECIOS PARA HINCHAS");
+        System.out.println("EL VALOR DE LA POPULAR ES DE: $"+precioPopularVisitante);
+        System.out.println("EL VALOR DE LA PLATEA ES DE: $"+precioPlateaVisitante);
+
+    }
+
+
+}
 
 
    
