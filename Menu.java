@@ -121,4 +121,67 @@ public class Menu extends Entrada{
         System.out.println("LO RECAUDADO EN POPULAR:"+recaudacionPopularint);
         System.out.println("LO RECAUDADO EN PLATEAR:"+recaudacionPlateaint);
     }
+    public void encontrarEntrada_comprada_internet(int DNI) {
+        int cont = 0;
+        int cont1 = 0;
+        boolean encontro = false;
+        for (Hincha c : Plateacompradasporinternet) {
+            if (c.getDNI().equals(DNI)) {
+
+                cont++;
+                if (cont == 1) {
+                    System.out.println("La entrada fue encontrada:" + c);
+                    System.out.println("La entrada fue encontrada en la platea local");
+                }
+                encontro = true;
+                break;
+            }
+
+            for (Hincha x : Popularcompradasporintenet) {
+                if (x.getDNI().equals(DNI)) {
+
+                    cont1++;
+                    if (cont1 == 1) {
+                        System.out.println("La entrada fue encontrada:" + x);
+                        System.out.println("La entrada fue encontrada en la platea local");
+                    }
+                    encontro = true;
+                    break;
+                }
+            }
+        }
+
+    }
+    public void guardar(String NombreDEarchivos, String NombredeSegundaCarpeta) {
+        try {
+            ObjectOutputStream flujodesalida = new ObjectOutputStream(new FileOutputStream(NombreDEarchivos));
+            flujodesalida.writeObject(Plateacompradasporinternet);
+            flujodesalida.close();
+            ObjectOutputStream flujodesalida2 = new ObjectOutputStream(new FileOutputStream(NombredeSegundaCarpeta));
+            flujodesalida2.writeObject(Popularcompradasporintenet);
+            flujodesalida2.close();
+        } catch (IOException e) {
+            System.out.println("no se ha encontrado el archivo");
+        }
+
+    }
+    public void abrir(String NombreDEarchivos, String NombredeSegundaCarpeta) {
+        try {
+
+            ObjectInputStream flujodeentrada = new ObjectInputStream(new FileInputStream(NombreDEarchivos));
+            LinkedList<Hincha> Platearecuperadaint = (LinkedList<Hincha>) flujodeentrada.readObject();
+            ObjectInputStream flujodeentrada2 = new ObjectInputStream(new FileInputStream(NombredeSegundaCarpeta));
+            LinkedList<Hincha> Popularrecuperadaint = (LinkedList<Hincha>) flujodeentrada2.readObject();
+            flujodeentrada.close();
+            flujodeentrada2.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("no se ha encontrado el archivo");
+        }
+
+
+    }
+
+
     
+}
+
