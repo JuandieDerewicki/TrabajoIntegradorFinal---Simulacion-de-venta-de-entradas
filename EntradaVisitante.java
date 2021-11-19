@@ -72,7 +72,36 @@ public class EntradaVisitante {
 
         return null;
     }
+public void encontrarEntrada(int DNI, Empleado empleado) {
+        int cont=0;
+        int cont1=0;
+        boolean encontro = false;
+        for (HinchaVisitante c : PlateaVisitante) {
+            if (c.getDNI().equals(DNI)) {
+                cont++;
+                if (cont==1){
 
+                System.out.println("La entrada fue encontrada:" + c);
+                System.out.println("La entrada fue encontrada en la platea visitante");
+                }
+
+                encontro = true;
+                break;
+            }
+
+            for (HinchaVisitante x : PopularVisitante) {
+                if (x.getDNI().equals(DNI)) {
+                    cont1++;
+                    if (cont1==1){
+                    System.out.println("La entrada fue encontrada:" + x);
+                        System.out.println("La entrada fue encontrada en la popular visitante" );}
+                    encontro = true;
+                    break;
+                }
+            }
+        }
+
+    }
 
 
     
